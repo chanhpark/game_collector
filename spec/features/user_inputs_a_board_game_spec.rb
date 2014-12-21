@@ -19,7 +19,9 @@ feature "Input a Board Game", %q{
     fill_in "Name", with: "Settlers of Catan"
     fill_in "Publisher", with: "Mayfair Games"
     fill_in "Description", with: "Best Game Ever!"
-    fill_in "Release Date", with: "December 25, 2011"
+    select "2014", from: "board_game_release_date_1i"
+    select "December", from: "board_game_release_date_2i"
+    select "30", from: "board_game_release_date_3i"
     click_on "Create Board Game"
 
     expect(page).to have_content ("created successfully")
