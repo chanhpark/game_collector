@@ -24,7 +24,7 @@ feature "Input a Board Game", %q{
     select "30", from: "board_game_release_date_3i"
     click_on "Create Board Game"
 
-    expect(page).to have_content ("created successfully")
+    expect(page).to have_content ("Board Game Created!")
   end
 
 end
