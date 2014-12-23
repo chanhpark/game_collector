@@ -15,8 +15,11 @@ feature "Input a Board Game", %q{
 
 } do
 
-  scenario 'user inputs a board game' do
+  before(:each) do
     visit new_board_game_path
+  end
+
+  scenario 'user inputs a board game' do
     fill_in "Name", with: "Settlers of Catan"
     fill_in "Publisher", with: "Mayfair Games"
     fill_in "Description", with: "Best Game Ever! xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
@@ -29,7 +32,6 @@ feature "Input a Board Game", %q{
   end
 
   scenario "user is given an error if they forgot fields " do
-    visit new_board_game_path
     click_on "Create Board Game"
 
     expect(page).to have_content("Name can't be blank")
@@ -47,7 +49,6 @@ feature "Input a Board Game", %q{
     )
     month = Date::MONTHNAMES[board_game.release_date.month]
 
-    visit new_board_game_path
     fill_in "Name", with: board_game.name
     fill_in "Publisher", with: board_game.publisher
     fill_in "Description", with: board_game.description
@@ -56,6 +57,6 @@ feature "Input a Board Game", %q{
     select board_game.release_date.day, from: "board_game_release_date_3i"
 
     click_on "Create Board Game"
-    expect(page).to have_content("This boar d game already exists in our records!")
+    expect(page).to have_content("This board game already exists in our records!")
   end
 end
